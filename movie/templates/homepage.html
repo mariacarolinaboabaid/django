@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}
+Homepage
+{% endblock %}
+
+<!-- Head -->
+{% block head %}
+<style>
+    $itemGrow: 1.2;
+    $duration: 250ms;
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        background-color: #000;
+    }
+
+    h1 {
+        font-family: Arial;
+        color: red;
+        text-align: center;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 100%);
+        overflow: hidden;
+        scroll-behavior: smooth;
+
+        section {
+            width: 100%;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(5, auto);
+            margin: 20px 0;
+
+            .item {
+                padding: 0 2px;
+                transition: $duration all;
+
+                &:hover {
+                    margin: 0 40px;
+                    transform: scale(1.2);
+                }
+            }
+
+            a {
+                position: absolute;
+                color: #fff;
+                text-decoration: none;
+                font-size: 6em;
+                background: rgb(0, 0, 0);
+                width: 80px;
+                padding: 20px;
+                text-align: center;
+                z-index: 1;
+
+                &:nth-of-type(1) {
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    background: linear-gradient(-90deg,
+                            rgba(0, 0, 0, 0) 0%,
+                            rgba(0, 0, 0, 1) 100%);
+                }
+
+                &:nth-of-type(2) {
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    background: linear-gradient(90deg,
+                            rgba(0, 0, 0, 0) 0%,
+                            rgba(0, 0, 0, 1) 100%);
+                }
+            }
+        }
+    }
+
+    // Remove the arrow for Mobile
+    @media only screen and (max-width: 600px) {
+        a.arrow__btn {
+            display: none;
+        }
+    }
+</style>
+<link rel="stylesheet" href="{% static 'css/moviesSection.css' %}">
+{% endblock %}
+
+<!-- Body -->
+{% block content %}
+
+<main class="min-vh-100 w-100 d-flex flex-column text-white">
+
+    <!-- Header -->
+    <section id="ctnImage" class="d-flex flex-column justify-content-end opacity-50 mb-5"
+        style="background-image: url('{{ highlight_movie.image.url }}');">
+    </section>
+
+    <section id="infoTitle" class="d-flex flex-column">
+        <h1 class="fs-1 fw-bold"> {{ object }}</h1>
+        <p> {{ highlight_movie.description|slice:":150" }}...</p>
+        <div>
+            <a href=" {{ highlight_movie.trailers.first.url }}">
+                <button class="btn btn-light">
+                    <ion-icon name="play"></ion-icon>
+                    <span>Play</span>
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- Carrousel recent movies -->
+    <section class="container-fluid p-5 pt-0 w-90 d-flex flex-column justify-content-center gap-2 mb-5">
+        <h4 style="font-size: 17px;" class="mb-5">The most recent movies &#127916;</h4>
+        <div class="wrapper">
+            <!-- Section 1 - recent movies  -->
+            <section id="newSection1" class="d-flex align-items-center justify-content-center gap-5">
+                <a href="#newSection1" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">‹</a>
+                {% for movie in recent_movies %}
+                {% if forloop.counter < 5 %} <div class="item">
+                    <a href="{% url 'movie:detailsMovie' movie.id %}">
+                        <img style="height: 250px; width: 180px;" src=" {{movie.filmCover.url }}"
+                            alt="Images of movies recently added">
+                    </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <a href="#newSection2" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">›</a>
+    </section>
+    <!-- Section 2 - recent movies  -->
+    {% if recent_movies|length > 4 %}
+    <section id="newSection2" class="d-flex align-items-center justify-content-center gap-5">
+        <a href="#newSection1" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">‹</a>
+        {% for movie in recent_movies %}
+        {% if forloop.counter > 5 %}
+        <div class="item">
+            <a href="{% url 'movie:detailsMovie' movie.id %}">
+                <img style="height: 250px; width: 180px;" src=" {{movie.filmCover.url }}"
+                    alt="Images of movies recently added">
+            </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <a href="#newSection2" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">›</a>
+    </section>
+    {% endif %}
+    </div>
+    </section>
+
+    <!-- Carrousel hot movies -->
+    <section class="container-fluid p-5 pt-0 w-90 d-flex flex-column justify-content-center gap-2 mb-5">
+        <h4 style="font-size: 17px;" class="mb-5">What is hot &#128293;</h4>
+        <div class="wrapper">
+            <!-- Section 1 - hot movies  -->
+            <section id="hotSection1" class="d-flex align-items-center justify-content-center gap-5">
+                <a href="#hotSection1" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">‹</a>
+                {% for movie in hot_movies %}
+                {% if forloop.counter < 5 %} <div class="item">
+                    <a href="{% url 'movie:detailsMovie' movie.id %}">
+                        <img style="height: 250px; width: 180px;" src=" {{movie.filmCover.url }}"
+                            alt="Images of the most watched movies">
+                    </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <a href="#hotSection2" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">›</a>
+    </section>
+    <!-- Section 2 - hot movies  -->
+    {% if hot_movies|length > 4 %}
+    <section id="hotSection2" class="d-flex align-items-center justify-content-center gap-5">
+        <a href="#hotSection1" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">‹</a>
+        {% for movie in hot_movies %}
+        {% if forloop.counter > 5 %}
+        <div class="item">
+            <a href="{% url 'movie:detailsMovie' movie.id %}">
+                <img style="height: 250px; width: 180px;" src=" {{movie.filmCover.url }}"
+                    alt="Images of the most watched movies">
+            </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <a href="#hotSection2" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">›</a>
+    </section>
+    {% endif %}
+    </div>
+    </section>
+
+     <!-- Carrousel seen movies -->
+     <section class="container-fluid p-5 pt-0 w-90 d-flex flex-column justify-content-center gap-2 mb-5">
+        <h4 style="font-size: 17px;" class="mb-5">Seen movies &#128064;</h4>
+        <div class="wrapper">
+            <!-- Section 1 - seen movies  -->
+            <section id="seenSection1" class="d-flex align-items-center justify-content-center gap-5">
+                <a href="#seenSection1" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">‹</a>
+                {% for movie in request.user.seen_movies.all %}
+                {% if forloop.counter < 5 %} <div class="item">
+                    <a href="{% url 'movie:detailsMovie' movie.id %}">
+                        <img style="height: 250px; width: 180px;" src=" {{movie.filmCover.url }}"
+                            alt="Images of movies recently added">
+                    </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <a href="#seenSection2" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">›</a>
+    </section>
+    <!-- Section 2 - seen movies  -->
+    {% if request.user.seen_movies.all|length > 4 %}
+    <section id="seenSection2" class="d-flex align-items-center justify-content-center gap-5">
+        <a href="#seenSection1" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">‹</a>
+        {% for movie in request.user.seen_movies.all %}
+        {% if forloop.counter > 5 %}
+        <div class="item">
+            <a href="{% url 'movie:detailsMovie' movie.id %}">
+                <img style="height: 250px; width: 180px;" src=" {{movie.filmCover.url }}"
+                    alt="Images of movies recently added">
+            </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <a href="#seenSection2" class="arrow__btn" style="text-decoration: none; color: white; font-size: 30px;">›</a>
+    </section>
+    {% endif %}
+    </div>
+    </section>
+
+
+
+</main>
+{% endblock %}

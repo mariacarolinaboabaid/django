@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!-- Title -->
+{% block title %}
+Create Account
+{% endblock %}
+
+<!-- Head -->
+{% block head %}
+<style>
+    header {
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+    }
+
+    ul li, #hint_id_username {
+        color: #b7aab0;
+        font-size: 12px;
+        list-style: none;
+    }
+</style>
+{% endblock %}
+
+<!-- Body -->
+{% block content %}
+<header class="opacity-50 position-relative"
+    style="background-image: url('{% static 'images/background_homepage.jpg' %}');">
+</header>
+
+<div
+class="bg-black py-4 px-5 position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center gap-2 text-center text-white">
+    <h1 class="fs-3">Create Account</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <button type="submit" class="btn btn-danger my-0">Create account</button>
+    </form>
+</div>
+{% endblock %}

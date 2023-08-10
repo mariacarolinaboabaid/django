@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}
+Logout
+{% endblock %}
+
+<!-- Head -->
+{% block head %}
+<style>
+    header {
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+    }
+</style>
+{% endblock %}
+
+<!-- Body -->
+{% block content %}
+<header class="opacity-25 position-relative"
+    style="background-image: url('{% static 'images/background_homepage.jpg' %}');">
+</header>
+
+<div
+class="w-100 position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center gap-2 text-center text-white">
+    <h1 class="fs-3">Logout successfully completed</h1>
+
+    <a href="{% url 'movie:public' %}">
+        <button type="button" class="btn btn-danger mt-3">Main page</button>
+    </a>
+</div>
+
+{% endblock %}

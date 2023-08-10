@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}
+Search results &#128269;
+{% endblock %}
+
+
+<!-- Body -->
+{% block content %}
+
+<main class="min-vh-100 w-90 d-flex flex-column text-white m-5 p-5">
+
+    <section class="container-fluid w-90 d-flex flex-column gap-2 p-2">
+
+        <h4 style="font-size: 17px;">Search results  &#128269;</h4>
+
+        <div class="d-flex flex-wrap justify-content-around gap-5">
+            {% for movie in object_list %}
+            <div id="ctnCover">
+                <a href="{% url 'movie:detailsMovie' movie.id %}">
+                    <img style="height: 250px; width: 180px;" src=" {{movie.filmCover.url }}"
+                        alt="Images of related movies">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+
+{% endblock %}

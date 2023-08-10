@@ -1,0 +1,46 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand d-none d-lg-block" href="/">
+            <img src="{% static 'images/Movieflix.png'%}" style="width: 150px;" alt="Logo">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="flex gap-3 collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <!-- Input -->
+            {% if user.is_authenticated %}
+            <form class="d-flex" role="search" method="get" action="{% url 'movie:search' %}">
+                <input class="form-control mb-1" type="search" placeholder="Search by title or category"
+                    aria-label="Search" name="query" style="width: 231px;">
+                <input type="submit" value="" style="display: none;">
+            </form>
+
+            <!-- Edit profile and Logout-->
+            <a href="{% url 'movie:editProfile' user.id %}">
+                <button type="button" class="btn btn-danger mb-1">Edit profile</button>
+            </a>
+
+            <a href="{% url 'movie:logout' %}">
+                <button type="button" class="btn btn-danger mb-1">Logout</button>
+            </a>
+            {% else %}
+
+            <!-- Login -->
+            <a href="{% url 'movie:createAccount' %}">
+                <button type="button" class="btn btn-danger mb-1">Create account</button>
+            </a>
+
+            <a href="{% url 'movie:login' %}">
+                <button type="button" class="btn btn-danger mb-1">Login</button>
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>

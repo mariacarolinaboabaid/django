@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}
+{{ object.title }}
+{% endblock %}
+
+<!-- Head -->
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/moviesSection.css' %}">
+{% endblock %}
+<!-- Body -->
+{% block content %}
+
+<main class="min-vh-100 w-100 d-flex flex-column text-white">
+
+    <!-- Header -->
+    <section id="ctnImage" class="d-flex flex-column justify-content-end opacity-50"
+        style="background-image: url('{{ object.image.url }}');">
+    </section>
+
+    <section id="infoTitle" class="d-flex flex-column">
+        <h1 class="fs-1 fw-bold"> {{ object }}</h1>
+        <p> {{ object.description|slice:":150" }}...</p>
+        <div>
+            <a href=" {{ object.trailers.first.url }}">
+                <button class="btn btn-light">
+                    <ion-icon name="play"></ion-icon>
+                    <span>Play</span>
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- More info  -->
+    <section id="info" class="container-fluid p-5 w-90 d-flex flex-column justify-content-center gap-2">
+        <h4>Description</h4>
+        <p class="fw-lighter">{{ object.description }}</p>
+
+        <h4>Trailers</h4>
+        {% for trailer in object.trailers.all %}
+        <a href="{{trailer.url}}" class="fw-lighter text-white text-decoration-none">
+            <p>{{ trailer.title }}</p>
+        </a>
+        {% endfor %}
+
+        <h4>Views: <p class="fw-lighter" style="display: inline;" >{{ object.views }}</p></h4>
+    </section>
+
+    <!-- Related movies -->
+    <section class="container-fluid p-5 pt-0 w-90 d-flex flex-column justify-content-center gap-2">
+        <h4 style="font-size: 17px;">Related movies</h4>
+
+        <div class="d-flex gap-5">
+            {% for movie in relatedMovies %}
+            <div id="ctnCover" >
+                <a href="{% url 'movie:detailsMovie' movie.id %}">
+                    <img style="height: 250px; width: 180px;" src=" {{movie.filmCover.url }}" alt="Images of related movies">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,26 @@
+main {
+    position: relative;
+}
+
+#infoTitle {
+    position: absolute;
+    top: 420px;
+    left: 46px;
+}
+
+#ctnImage {
+    background-size: cover;
+    background-position: top;
+    height: 80vh;
+    box-shadow: 0px 7px 25px -6px rgba(74,69,74,1);
+}
+
+h4 {
+    font-size: 17px;
+}
+
+#info p {
+    font-size: 14px;
+    text-align: justify;
+}
+
