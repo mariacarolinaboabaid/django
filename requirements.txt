@@ -6,4 +6,3 @@ gunicorn==21.2.0
 Pillow==9.4.0
 sqlparse==0.4.4
 whitenoise==6.5.0
-python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
