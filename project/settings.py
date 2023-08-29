@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-)t92jxc9xtvq=&m&(4lv7t%w-c!3fw0_$dk8nt57%(&n9wbflv"
+TOKEN_CSRF = os.getenv('TOKEN_CSRF')
+if TOKEN_CSRF:
+    SECRET_KEY = TOKEN_CSRF
+    CSRF_TRUSTED_ORIGINS = ["https://movieflix-production-6f66.up.railway.app/"]
+else:
+    SECRET_KEY = "django-insecure-)t92jxc9xtvq=&m&(4lv7t%w-c!3fw0_$dk8nt57%(&n9wbflv"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://movieflix-production-6f66.up.railway.app/", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -87,8 +94,7 @@ DATABASES = {
     }
 }
 
-import dj_database_url
-import os
+
 DATABASE_URL =  "postgresql://postgres:x7iVsjBlBd37yCwJbJb2@containers-us-west-59.railway.app:6109/railway"
 if DATABASE_URL:
     DATABASES = {
