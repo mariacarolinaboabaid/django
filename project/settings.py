@@ -30,7 +30,7 @@ else:
     SECRET_KEY = "django-insecure-)t92jxc9xtvq=&m&(4lv7t%w-c!3fw0_$dk8nt57%(&n9wbflv"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["https://movieflix-production-6f66.up.railway.app/", "localhost", "127.0.0.1"]
 
