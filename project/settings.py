@@ -48,12 +48,14 @@ INSTALLED_APPS = [
     "movie",
     "crispy_forms",
     "crispy_bootstrap5",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -163,3 +165,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+CORS_ALLOWED_ORIGINS = [
+    "https://movieflix-production-6f66.up.railway.app",
+
+]
