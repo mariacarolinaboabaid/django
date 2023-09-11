@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TOKEN_CSRF = os.getenv('TOKEN_CSRF')
 if TOKEN_CSRF:
     SECRET_KEY = TOKEN_CSRF
-    CSRF_TRUSTED_ORIGINS = ['https://movieflix-production-6f66.up.railway.app/']
+    CSRF_TRUSTED_ORIGINS = ['movieflix-production-6f66.up.railway.app']
 else:
     SECRET_KEY = "django-insecure-)t92jxc9xtvq=&m&(4lv7t%w-c!3fw0_$dk8nt57%(&n9wbflv"
 
@@ -48,14 +48,12 @@ INSTALLED_APPS = [
     "movie",
     "crispy_forms",
     "crispy_bootstrap5",
-    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -166,7 +164,3 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-CORS_ALLOWED_ORIGINS = [
-    "https://movieflix-production-6f66.up.railway.app",
-
-]
