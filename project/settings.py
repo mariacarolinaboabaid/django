@@ -25,14 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TOKEN_CSRF = os.getenv('TOKEN_CSRF')
 if TOKEN_CSRF:
     SECRET_KEY = TOKEN_CSRF
-    CSRF_TRUSTED_ORIGINS = ['movieflix-production-6f66.up.railway.app']
+    CSRF_TRUSTED_ORIGINS = ['https://movieflix-production-6f66.up.railway.app']
 else:
     SECRET_KEY = "django-insecure-)t92jxc9xtvq=&m&(4lv7t%w-c!3fw0_$dk8nt57%(&n9wbflv"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'movieflix-production-6f66.up.railway.app', 'https://movieflix-production-6f66.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'movieflix-production-6f66.up.railway.app', ]
 
 
 
