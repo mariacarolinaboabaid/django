@@ -61,7 +61,7 @@ class Search(LoginRequiredMixin, ListView):
     def get_queryset(self):
         search_term = self.request.GET.get('query')
         if search_term:
-            object_list = self.model.objects.filter(Q(title__contains=search_term) | Q(category__contains=search_term))
+            object_list = self.model.objects.filter(Q(title__icontains=search_term) | Q(category__icontains=search_term))
             return object_list
         else:
             return None        
