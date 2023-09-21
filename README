@@ -1,41 +1,28 @@
 
-<h1>Movieflix</h1>
+MOVIEFLIX: é uma aplicação web baseada em Django que oferece uma variedade de funcionalidades para os amantes de filmes. Com o Movieflix, você pode criar uma conta de usuário, fazer login, assistir a filmes, ver os filmes mais recentes e mais vistos, além de procurar filmes por título ou categoria.</p>
 
-<p>Movieflix é uma aplicação web baseada em Django que oferece uma variedade de funcionalidades para os amantes de filmes. Com o Movieflix, você pode criar uma conta de usuário, fazer login, assistir a filmes, ver os filmes mais recentes e mais vistos, além de procurar filmes por título ou categoria.</p>
+Funcionalidades Principais
 
-<h2>Funcionalidades Principais</h2>
+    a) Criação de usuário
+    b) Autenticação de usuário
+    c) Logout
+    d) Oferece a relação de filmes assistidos pelo usuário logado, os adicionados recentementes e os mais vistos na aplicação
+    e) Campo de busca de filmes por título ou categoria
 
-<p>-Criação de Usuário</p>
+Como executar o projeto:
 
-<p>-Autenticação de Usuário</p
+    1. Em ambiente local:
 
-<p>-Logout</p>
-<p>-O Movieflix oferece relatórios sobre os filmes assistidos, os mais recentes e os mais vistos:</p>
-<ul>
-    <li><strong>Filmes Assistidos:</strong> Na página inicial, você pode ver a lista de filmes que você assistiu recentemente.</li>
-    <li><strong>Filmes Mais Recentes:</strong> Na seção "Filmes Recentes", você encontrará os filmes mais recentes adicionados à plataforma.</li>
-    <li><strong>Filmes Mais Vistos:</strong> Na seção "Filmes Populares", você encontrará os filmes mais vistos pelos usuários do Movieflix.</li>
-</ul>
+    a) Clone este repositório para sua máquina
+    b) Certifique-se de que você possui o Python instalado em seu sistema
+    c) Crie um ambiente virtual para o projeto e ative-o
+    d) Instale as dependências do projeto com "pip install -r requirements.txt"
+    e) Execute as migrações do banco de dados com "python manage.py migrate"
+    f) Inicie o servidor de desenvolvimento com <code>python manage.py runserver
+    g) Acesse o aplicativo em seu navegador na porta do localhost que consta em seu terminal
 
-<p>Busca de Filmes: você pode procurar filmes por título ou categoria </p>
 
-<h2>Como Executar o Projeto</h2>
+    2. Ou você pode acessar o link https://movieflix-production-6f66.up.railway.app/
 
-<p>Se você deseja executar o projeto Movieflix em seu ambiente local, siga estas etapas:</p>
-
-<ol>
-    <li>Clone este repositório para sua máquina.</li>
-    <li>Certifique-se de que você possui o Python instalado em seu sistema.</li>
-    <li>Crie um ambiente virtual para o projeto e ative-o.</li>
-    <li>Instale as dependências do projeto com <code>pip install -r requirements.txt</code>.</li>
-    <li>Configure as variáveis de ambiente, como a chave secreta do Django e as configurações do banco de dados, em um arquivo <code>.env</code> na raiz do projeto.</li>
-    <li>Execute as migrações do banco de dados com <code>python manage.py migrate</code>.</li>
-    <li>Inicie o servidor de desenvolvimento com <code>python manage.py runserver</code>.</li>
-    <li>Acesse o aplicativo em seu navegador em <a href="http://localhost:8000/">http://localhost:8000/</a>.</li>
-</ol>
-
-<p> Ou você pode acessar o link https://movieflix-production-6f66.up.railway.app/</p> 
-</body>
-</html>
 
 
